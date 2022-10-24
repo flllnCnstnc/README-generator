@@ -100,18 +100,14 @@ inquirer.prompt ([
         name: "contributing",
         message: "What does the user need to know when contributing to this repo?"
     },
-])
+])// TODO: Create a function to write README file
+.then((answers) => {
+    const htmlPage = questions(answers);
+    fs.writeFile('index.html', htmlPage, (err) =>
+        err ? console.log(err) : console.log('Success making you README!')
+    );
+})
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile(customREADME, data, (err) => {
-        if (err) {
-            return console.log(err);
-        }
-
-        console.log("README created")
-    });
-}
 
 
 // TODO: Create a function to initialize app
