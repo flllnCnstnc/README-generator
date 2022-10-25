@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Script } = require("vm");
 
 // TODO: Create an array of questions for user input
-const questions = ({ name, username, email, title, description, instillation, test, usage, contributing}) =>
+const questions = ({ name, username, email, furtherContact, title, description, instillation, test, usage, contributing}) =>
     `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +20,10 @@ const questions = ({ name, username, email, title, description, instillation, te
         <h1 class="display-4">Hi, my name is ${name}</h1> <!--connect given content with template literals-->
         <h3>README <span class="badge badge-secondary">Contact Me</span></h3>
         <ul class="list-group">
-            <li class="list-group-item">My github username is ${username}</li>
-            <li class="list-group-item">Email: ${email}</li>
+            <li class="list-group-item">My github username is <a href = "https://github.com/${username}/">${username}<a></li>
+            <li class="list-group-item">Email: ${email}
+                <ol>For more info please contact me through ${furtherContact}</ol>
+            </li>    
         </ul>
     </div>
 
@@ -57,6 +59,11 @@ inquirer.prompt ([
         type: "input",
         name: "email",
         message: "What is your e-mail address?"
+    },
+    {
+        type: "input",
+        name: "furtherContact",
+        message: "How would you be contacted for more information?"
     },
     {
         type: "input",
